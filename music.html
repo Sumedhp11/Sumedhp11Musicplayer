@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>music player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="music-container">
+            <h2 id="title">Deva Deva Brahmastra</h2>
+            <h3 id="artist">Arjit singh</h3>
+            <div class="img-container">
+                <img src="Covers/deva deva cover.jpg" alt="Deva Deva">
+            </div>
+            <audio src="music/Deva Deva - Brahmastra.mp3" ></audio>
+            <div class="music-control">
+                <i class="fa-solid fa-backward" id="prev" title="Previous"></i>
+                <i class="fa-solid fa-play main-button" id="play" title="Play"></i>
+                <i class="fa-solid fa-forward" id="forward" title="forward"></i>
+            </div>
+        </div>
+    </div>
+    <script>
+        const music = document.querySelector("audio")
+        const play = document.getElementById("play");
+        const artist = document.getElementById("artist");
+        const  title= document.getElementById("title");
+        const prev = document.getElementById("prev");
+        const next = document.getElementById("forward");
+        const img = document.querySelector("img");
+
+        const songs = [{
+            name: "Deva Deva - Brahmastra",
+            title: "Deva Deva",
+            artist: "Arjit Singh",
+            img:"deva deva cover"
+        },
+        {
+            name:"Heart+Attack -Enrique+Iglesias+",
+            title:"Heart Attack",
+            artist:"Enrique Iglesias",
+            img:"HeartAttack cover"
+        },
+        {
+            name:"Hero_-_Enrique_Iglesias_Forbesloaded.com",
+            title:"Hero",
+            artist:"Enrique Iglesias",
+            img:"hero cover"
+        },
+        {
+            name:"Let Me Love You(PagalWorld.com.se)",
+            title:"Let Me Love You",
+            artist:"Justin Bieber",
+            img:"let me love you cover"
+        },
+        {
+            name:"Mirror-Lil_Wayne_ft_Bruno_Mars_-",
+            title:"Mirror",
+            artist:"Bruno Mars and Lil Wayne",
+            img:"mirror-cover"
+        },  
+        {
+            name:"Sucker for Pain  Lil Wayne Wiz Khalifa  Imagine Dragons w Logic  Ty Dolla ign ft X Ambassadors",
+            title:"Sucker For Pain",
+            artist:"Lil Wayne , Wiz Khalifa",
+            img:"sucker for pain cover"
+        },
+        {
+            name:"That's What I Want",
+            title:"Thats what I Want",
+            artist:"Lil Nas X",
+            img:"thats what i want cover"
+        },
+        {
+            name:"The_Night_We_Met ",
+            title:"The Night We Met",
+            artist:"Lord huron",
+            img:"the night we met cover"
+        },
+        {
+            name:"Under-The-Influence -Chris-Brown-",
+            title:"under The Influence",
+            artist:"Chris Brown",
+            img:"the night we met cover"
+        },
+        {
+            name:"Zero -Chris Brown",
+            title:"Zero",
+            artist:"Chris Brown",
+            img:"Zero Cover"
+        }
+    ]
+
+        let isplaying = false;
+        const playmusic = ()=>{
+            isplaying = true;
+            music.play();
+            play.classList.replace("fa-play", "fa-pause");
+            img.classList.add("anima");
+        };
+
+        const pausemusic= ()=>{
+            isplaying = false;
+            music.pause();
+            play.classList.replace("fa-pause", "fa-play");
+            img.classList.remove("anima");
+        };
+
+        play.addEventListener('click', ()=>{
+            if(isplaying){
+                pausemusic();
+            }
+                else{
+                    playmusic();
+                }
+            }
+        );
+
+        // changing music
+            const loadsong = (songs) =>{
+                title.textContent = songs.title;
+                artist.textContent = songs.artist;
+                music.src = "music/"+songs.name+".mp3";
+                img.src = "Covers/"+ songs.img+".jpg";
+
+            };
+
+            songindex = 0;
+            // loadsong(songs[4]);
+            const nextsong = ()=>{
+                songindex = (songindex + 1)% songs.length;
+                loadsong(songs[songindex]);
+                playmusic();
+            };
+
+            const prevsong = ()=>{
+                songindex = (songindex - 1 +songs.length)%songs.length;
+                loadsong(songs[songindex]);
+                playmusic();
+            };
+
+            next.addEventListener("click",nextsong);
+            prev.addEventListener("click",prevsong);
+
+
+    </script>
+</body>
+</html>
