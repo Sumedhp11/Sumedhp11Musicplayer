@@ -14,9 +14,9 @@
             <h2 id="title">Deva Deva Brahmastra</h2>
             <h3 id="artist">Arjit singh</h3>
             <div class="img-container">
-                <img src="Covers/deva deva cover.jpg" alt="Deva Deva">
+                <img src="deva deva cover.jpg" alt="Deva Deva">
             </div>
-            <audio src="music/Deva Deva - Brahmastra.mp3" ></audio>
+            <audio src="Deva Deva - Brahmastra.mp3" ></audio>
             <div class="music-control">
                 <i class="fa-solid fa-backward" id="prev" title="Previous"></i>
                 <i class="fa-solid fa-play main-button" id="play" title="Play"></i>
@@ -124,8 +124,8 @@
             const loadsong = (songs) =>{
                 title.textContent = songs.title;
                 artist.textContent = songs.artist;
-                music.src = "music/"+songs.name+".mp3";
-                img.src = "Covers/"+ songs.img+".jpg";
+                music.src = songs.name+".mp3";
+                img.src = songs.img+".jpg";
 
             };
 
